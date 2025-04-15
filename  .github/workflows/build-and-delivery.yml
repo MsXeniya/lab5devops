@@ -11,7 +11,7 @@ on:
 jobs:
   cd:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    runs-on: windows
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
