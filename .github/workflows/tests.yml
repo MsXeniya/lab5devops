@@ -22,4 +22,5 @@ jobs:
           pip install pytest httpx
 
       - name: Run tests
-        run: python -m pytest tests/
+        run: |
+          PYTHONPATH=src pytest tests/
