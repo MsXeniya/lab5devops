@@ -10,7 +10,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
+      - name: Set up Python 3.12
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -21,10 +21,15 @@ jobs:
           pip install -r requirements.txt
           pip install pytest httpx
 
-      - name: Run tests
+      - name: Debug project structure
         run: |
           echo "Current directory: $(pwd)"
-          echo "Files:"
-          ls -R
-          echo "Running tests with PYTHONPATH=src"
-          PYTHONPATH=src pytest tests/ -v
+          echo "Files in src:"
+          ls -la src/
+          echo "Files in src/tests:"
+          ls -la src/tests/
+
+      - name: Run tests
+        run: |
+          cd src
+          python -m pytest tests/ -v
