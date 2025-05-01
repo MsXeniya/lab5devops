@@ -23,13 +23,18 @@ jobs:
 
       - name: Debug project structure
         run: |
-          echo "Current directory: $(pwd)"
-          echo "Files in src:"
-          ls -la src/
-          echo "Files in src/tests:"
-          ls -la src/tests/
+          echo "### Current directory structure ###"
+          ls -R
+          echo "### Python version ###"
+          python --version
+          echo "### Installed packages ###"
+          pip list
+          echo "### Check src directory content ###"
+          ls -la src/ || echo "src directory not found"
+          echo "### Check tests directory content ###"
+          ls -la src/tests/ || echo "tests directory not found"
 
       - name: Run tests
         run: |
-          cd src
-          python -m pytest tests/ -v
+          echo "### Running tests from $(pwd) ###"
+          PYTHONPATH=./src pytest src/tests/ -v
