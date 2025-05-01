@@ -23,4 +23,8 @@ jobs:
 
       - name: Run tests
         run: |
-          PYTHONPATH=src pytest tests/
+          echo "Current directory: $(pwd)"
+          echo "Files:"
+          ls -R
+          echo "Running tests with PYTHONPATH=src"
+          PYTHONPATH=src pytest tests/ -v
