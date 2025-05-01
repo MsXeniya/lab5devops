@@ -10,6 +10,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Verify repository structure
+        run: |
+          echo "### Current structure ###"
+          ls -R
+          echo "### Check tests directory ###"
+          ls -la src/tests/ || echo "Tests directory not found"
+
       - name: Set up Python 3.12
         uses: actions/setup-python@v5
         with:
@@ -21,20 +28,7 @@ jobs:
           pip install -r requirements.txt
           pip install pytest httpx
 
-      - name: Debug project structure
-        run: |
-          echo "### Current directory structure ###"
-          ls -R
-          echo "### Python version ###"
-          python --version
-          echo "### Installed packages ###"
-          pip list
-          echo "### Check src directory content ###"
-          ls -la src/ || echo "src directory not found"
-          echo "### Check tests directory content ###"
-          ls -la src/tests/ || echo "tests directory not found"
-
       - name: Run tests
         run: |
-          echo "### Running tests from $(pwd) ###"
-          PYTHONPATH=./src pytest src/tests/ -v
+          cd src
+          python -m pytest tests/ -v
