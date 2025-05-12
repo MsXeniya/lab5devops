@@ -10,14 +10,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Verify repository structure
-        run: |
-          echo "### Current structure ###"
-          ls -R
-          echo "### Check tests directory ###"
-          ls -la src/tests/ || echo "Tests directory not found"
-
-      - name: Set up Python 3.12
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -30,4 +23,4 @@ jobs:
 
       - name: Run tests
         run: |
-          PYTHONPATH=${{ github.workspace }}/src pytest tests/ -v
+          PYTHONPATH=./src pytest src/tests -v
