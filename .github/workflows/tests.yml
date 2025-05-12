@@ -30,4 +30,4 @@ jobs:
 
       - name: Run tests
         run: |
-          PYTHONPATH=${{ github.workspace }}/src pytest tests/ -v
+          PYTHONPATH=${{ github.workspace }} pytest src/tests/ -v
