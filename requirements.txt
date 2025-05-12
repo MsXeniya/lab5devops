@@ -4,3 +4,4 @@ pytest
 requests
 pydantic
 httpx
+pydantic-settings
